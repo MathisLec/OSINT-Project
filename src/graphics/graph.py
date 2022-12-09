@@ -18,6 +18,10 @@ LABEL_COLOR = "#ecf0f1"
 
 is_On = {"DnsScan": 0, "Shodan":0, "TheHarvester":0, "URLScan":0}
 
+def cleanCanva(frame):
+    for widget in frame.winfo_children():
+        widget.destroy()
+
 def buttonFactory(frame,comm,txt):
     return tk.Button(frame,relief="flat",text=txt,bg=DEFAULT_BUTTON_COLOR,font=("Arial Black",20),command=comm,height=2,width=10)
 
@@ -50,6 +54,9 @@ def switchButton(button):
         button["activebackground"] = DEACTIV_BUTTON_COLOR_OVER
         button["activeforeground"] = DEACTIV_FONT_COLOR_OVER
         is_On[button["text"]] = 0
+
+def startButtonFunction(app_frame):
+    cleanCanva(app_frame)
 
 # app frame
 app = tk.Tk()
@@ -87,7 +94,7 @@ url_entry.focus_set()
 url_entry.pack(expand=1)
 
 #Start button
-start_button = startButtonFactory(app, lambda: print("Hello"), "Start")
+start_button = startButtonFactory(app, lambda: startButtonFunction(app), "Start")
 start_button.pack(expand=1)
 
 app.mainloop()
