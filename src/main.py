@@ -33,7 +33,6 @@ def launch_scans(URL, scans):
         SCAN_PATH = os.path.join(os.getcwd(),"scan_"+URL)
         # Create directory if not exist
         if not os.path.exists(SCAN_PATH):
-            print(SCAN_PATH)
             os.makedirs(SCAN_PATH)
         # DNSSCAN
         if(scans["DnsScan"]):
