@@ -56,9 +56,21 @@ def switchButton(button):
         button["activeforeground"] = DEACTIV_FONT_COLOR_OVER
         is_On[button["text"]] = 0
 
+def initLogMenu():
+    menuButton_log_frame.pack()
+    if is_On["DnsScan"]:
+        dns_button.pack(side="left")
+    if is_On["Shodan"]:
+        shodan_button.pack(side="left")
+    if is_On["TheHarvester"]:
+        TH_button.pack(side="left")
+    if is_On["URLScan"]:
+        URLScan_button.pack(side="left")
+
 def startButtonFunction(app_frame):
     cleanCanva(app_frame)
     main.launch_scans(TEXT_ENTRY.get(),is_On)
+    initLogMenu()
 
 
 # app frame
@@ -67,6 +79,7 @@ app.geometry("800x800")
 app.title("OSINT tool")
 app.configure(bg=BACKGROUND_COLOR)
 
+##### Main Menu #####
 #label title
 menu_label = tk.Label(app,text="OSINT tool",font=("Arial Black",50),bg=BACKGROUND_COLOR,fg=LABEL_COLOR)
 menu_label.pack(expand=1)
@@ -100,5 +113,14 @@ url_entry.pack(expand=1)
 #Start button
 start_button = startButtonFactory(app, lambda: startButtonFunction(app), "Start")
 start_button.pack(expand=1)
+
+##### Log Menu #####
+#Log Menu Frame
+menuButton_log_frame = tk.Frame(app,bg=BACKGROUND_COLOR)
+#Update root buttons
+dns_button = menuButtonFactory(menuButton_log_frame, "DnsScan")
+shodan_button = menuButtonFactory(menuButton_log_frame, "Shodan")
+TH_button = menuButtonFactory(menuButton_log_frame, "TheHarvester")
+URLScan_button = menuButtonFactory(menuButton_log_frame, "URLScan")
 
 app.mainloop()
