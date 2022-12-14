@@ -1,4 +1,5 @@
 import tkinter as tk
+import main
 
 BACKGROUND_COLOR = "#34495e"
 
@@ -57,6 +58,8 @@ def switchButton(button):
 
 def startButtonFunction(app_frame):
     cleanCanva(app_frame)
+    main.launch_scans(TEXT_ENTRY.get(),is_On)
+
 
 # app frame
 app = tk.Tk()
@@ -89,7 +92,8 @@ URLScan_button = menuButtonFactory(menuButton_frame, "URLScan")
 URLScan_button.pack(side="left")
 
 #Entry for the URL
-url_entry = tk.Entry(app,width=30,font=("Arial Black",20))
+TEXT_ENTRY = tk.StringVar()
+url_entry = tk.Entry(app,width=30,font=("Arial Black",20), textvariable=TEXT_ENTRY)
 url_entry.focus_set()
 url_entry.pack(expand=1)
 
