@@ -32,13 +32,13 @@ def launch_scans(URL, scans):
         global SCAN_PATH
         SCAN_PATH = os.path.join(os.getcwd(),"scan_"+URL)
         # Create directory if not exist
-        #if not os.path.exists(SCAN_PATH):
-         #   print(SCAN_PATH)
-          #  os.makedirs(SCAN_PATH)
+        if not os.path.exists(SCAN_PATH):
+            print(SCAN_PATH)
+            os.makedirs(SCAN_PATH)
         # DNSSCAN
         if(scans["DnsScan"]):
             res = DnsScan.scanL(URL_DOMAIN)
-           # write(os.path.join(SCAN_PATH, "dnsscan.log"), res)
+            write(os.path.join(SCAN_PATH, "dnsscan.log"), res)
         # Shodan
         if(scans["Shodan"]):
             res = 0
