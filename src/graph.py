@@ -19,6 +19,8 @@ DEACTIV_FONT_COLOR_OVER = "#ff7464"
 
 LABEL_COLOR = "#ecf0f1"
 
+TEXT_BACKGROUND_COLOR = "#2c3e50"
+
 SCAN_PATH = ""
 
 is_On = {"DnsScan": 0, "Shodan":0, "TheHarvester":0, "URLScan":0}
@@ -98,7 +100,7 @@ def initLogMenu():
     #Log Menu Frame
     menuButton_log_frame = tk.Frame(app,bg=BACKGROUND_COLOR)
     menuButton_log_frame.pack()
-    text_area = tk.scrolledtext.ScrolledText(app)
+    text_area = tk.scrolledtext.ScrolledText(app,height=500, width=800,font=("Arial Black",10),fg="#ecf0f1" , bg=TEXT_BACKGROUND_COLOR)
     text_area.pack(expand=1)
     #Update root buttons
     if is_On["DnsScan"]:
