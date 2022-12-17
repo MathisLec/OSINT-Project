@@ -3,7 +3,6 @@
 import sys
 import os
 import getopt
-import socket
 import re
 import DnsScan
 import Shodan
@@ -38,12 +37,12 @@ def launch_scans(URL, scans):
             os.makedirs(SCAN_PATH)
         # DNSSCAN
         if(scans["DnsScan"]):
-            res = DnsScan.scanL(URL_DOMAIN)
+            res = DnsScan.scanL(URL)
             write(os.path.join(SCAN_PATH, "dnsscan.log"), res)
         # Shodan
         if(scans["Shodan"]):
-            res = Shodan.look_up_ip(URL_DOMAIN)
-            write(os.path.join(SCAN_PATH, "shodan.json"), res)
+            res = Shodan.scan(URL)
+            write(os.path.join(SCAN_PATH, "shodan.log"), res)
         # TheHarvester
         if(scans["TheHarvester"]):
             res = 0
