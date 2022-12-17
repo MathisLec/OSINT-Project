@@ -1,17 +1,24 @@
 import requests
 import time
-base_Url = "https://urlscan.io/api/v1/scan/"
-headers = {'API-Key' : 'ce7ec812-1458-4bcf-bdeb-2359893736a9'}
+import os
+import configparser as conf
 
-def scan_domain (domain : str) :
+URLSCAN_CONF_PATH = os.path.join(os.getcwd(),"resources","URLScan.conf")
 
-    domain_info = requests.post (base_Url, data= {'url': domain}, headers= headers)
+
+c = conf.ConfigParser()
+c.read(URLSCAN_CONF_PATH)
+
+BASE_URL = "https://urlscan.io/api/v1/scan/"
+HEADERS = {'API-Key' : c["DEFAULT"]["apiKey"]}
+
+def scan(domain) :
+    domain_info = requests.post (BASE_URL, data= {'url': domain}, headers= HEADERS)
     result_url = domain_info.json().get('api')
-    print (result_url)
     is_done = False
     while not is_done:
-        time.sleep (10)
-        result = requests.get(result_url, headers=headers).json()
+        time.sleep(1)
+        result = requests.get(result_url, headers=HEADERS).json()
         code = result.get ('status')
         if code != 404:
             is_done = True

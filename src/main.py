@@ -50,7 +50,7 @@ def launch_scans(URL, scans):
             write(os.path.join(SCAN_PATH, "theharvester.log"), res)
         # URLScan
         if(scans["URLScan"]):
-            res = 0
+            res = URLScan.scan(URL)
             write(os.path.join(SCAN_PATH, "urlscan.log"), res)
     else:
         usage()
