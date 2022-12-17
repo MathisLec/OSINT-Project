@@ -1,9 +1,12 @@
 from Shodan import look_up_ip
 import os
 import json
+import socket
 
 def main () :
-    host = '8.8.8.8'
+    ip = socket.gethostbyname("www.google.com")
+    print(ip)
+    host = ip
     shodan_info=look_up_ip(host)
     save_file (host, 'shodan.json', json.dumps(shodan_info, indent=4))
 
