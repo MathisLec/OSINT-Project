@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# -*- coding:Utf-8 -*-
 import tkinter as tk
 import tkinter.scrolledtext
 import os
