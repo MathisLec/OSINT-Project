@@ -33,7 +33,7 @@ def scan(domain):
 def scanL(domain):
     with open(DNSSCAN_JSON_PATH, 'r') as f:
         j = json.load(f)
-        finalStr = ""
+        finalStr = "Name\t\t\tTTL\tClass\tType\tRessource\n"
         dns = j["dnsRecords"]
         for l in dns:
             finalStr += l["rawText"] + '\n'
