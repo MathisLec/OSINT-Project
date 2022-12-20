@@ -8,6 +8,7 @@ import DnsScan
 import Shodan
 import URLScan
 
+
 SCAN_DICT = {"DnsScan": 0, "Shodan":0, "TheHarvester":0, "URLScan":0}
 URL_DOMAIN = ""
 SCAN_PATH = ""
