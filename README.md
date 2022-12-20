@@ -53,4 +53,5 @@ https://github.com/achillean/shodan-python
 //
 
 ## Docker
-docker build -t osint-img src_docker      
+docker build -t osint-img src_docker
+docker run -e dnsscan= -e domain="www.jambon.fr" -v $(pwd):/code/scans osint-img:latest

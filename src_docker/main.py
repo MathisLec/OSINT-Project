@@ -4,7 +4,6 @@ import sys
 import os
 import getopt
 import re
-from flask import Flask
 import DnsScan
 import Shodan
 import URLScan
@@ -34,10 +33,11 @@ def write(file_path, txt):
 def launch_scans(URL, scans):
     if URL != "":
         global SCAN_PATH
-        SCAN_PATH = os.path.join(os.getcwd(),"scan_"+URL)
+        SCAN_PATH = os.path.join(os.getcwd(),"scans","scan_"+URL)
         # Create directory if not exist
         if not os.path.exists(SCAN_PATH):
             os.makedirs(SCAN_PATH)
+            
         # DNSSCAN
         if(scans["DnsScan"]):
             res = DnsScan.scanL(URL)
@@ -57,32 +57,27 @@ def launch_scans(URL, scans):
     else:
         usage()
         sys.exit(2)
-        
-@server.route("/")
-def parseArgs(argv):
-    try:
-        opts,args = getopt.getopt(argv,"hdstu",["help","dnsscan", "shodan", "theharvester", "urlscan", "domain="])
-    except getopt.GetoptError:
+
+def parseArgs():
+    if  "help" in os.environ:
         usage()
         sys.exit(2)
-    for opt, arg in opts:
-        if opt in ("-h","--help"):
-            usage()
-            sys.exit(2)
-        elif opt in ("-d","--dnsscan"):
-            SCAN_DICT["DnsScan"] = 1
-        elif opt in ("-s","--shodan"):
-            SCAN_DICT["Shodan"] = 1
-        elif opt in ("-t","--theharvester"):
-            SCAN_DICT["TheHarvester"] = 1
-        elif opt in ("-u","--urlscan"):
-            SCAN_DICT["URLScan"] = 1
-        elif opt == "--domain":
-            URL_DOMAIN = arg
+    if "dnsscan" in os.environ:
+        SCAN_DICT["DnsScan"] = 1
+    if "shodan" in os.environ:
+        SCAN_DICT["Shodan"] = 1
+    if "theharvester" in os.environ:
+        SCAN_DICT["TheHarvester"] = 1
+    if "urlscan" in os.environ:
+        SCAN_DICT["URLScan"] = 1
+    if "domain" in os.environ:
+        URL_DOMAIN = os.environ['domain']
+    else:
+        usage()
+        sys.exit(2)
             
     launch_scans(URL_DOMAIN, SCAN_DICT)
             
         
 if __name__ == "__main__":
-    server.run(host='0.0.0.0')
-    parseArgs(sys.argv[1:])
+    parseArgs()
