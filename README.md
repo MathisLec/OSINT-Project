@@ -1,24 +1,7 @@
-## DEPENDANCES
-## - TKinter
-### Setup
-#### Pre-Required
-- python3-tk
-
-#### Install
-```
-pip install tk
-```
-
-## - Shodan
-#### Install
-```
-pip install shodan
-```
-## - Requests
-#### Install
-```
-pip install requests
-```
+## DEPENDENCIES
+- Shodan
+- Requests
+- ConfigParser
 
 ## Functioning
 This tool can be use with the graphic interface, in command line or as an API.
@@ -45,13 +28,30 @@ We are using official python library for Shodan
 https://github.com/achillean/shodan-python
 
 ## THEHARVESTER
-
-//
+Not implemented yet
 
 ## URLSCAN
+We are using the API service urlscan.io https://urlscan.io/
 
-//
-
+# EXTRA
 ## Docker
-docker build -t osint-img src_docker
+Out application can be contenerised using DockerFile in src_docker directory as followed:
+```bash
+$ docker build -t osint-img src_docker
+```
+This command will build the image and add it to your images list.
+It may be used as followed:
+```
 docker run -e dnsscan= -e domain="www.jambon.fr" -v $(pwd):/code/scans osint-img:latest
+```
+To enable scans that you want, add the environment variable among:
+- dnsscan=
+- shodan=
+- theharvester=
+- urlscan=
+
+Then, you must include the domain that you want perform the test:
+```
+-e domain=<domain>
+```
+The scans output are writed in the directory /code/scans in the container. So, in order to retrieve them, you must mount a volume toward that path.
