@@ -3,7 +3,6 @@
 import sys
 import os
 import getopt
-import re
 import DnsScan
 import Shodan
 import URLScan
@@ -56,6 +55,7 @@ def launch_scans(URL, scans):
     else:
         usage()
         sys.exit(2)
+        
 def parseArgs(argv):
     try:
         opts,args = getopt.getopt(argv,"hdstu",["help","dnsscan", "shodan", "theharvester", "urlscan", "domain="])
@@ -75,10 +75,12 @@ def parseArgs(argv):
         elif opt in ("-u","--urlscan"):
             SCAN_DICT["URLScan"] = 1
         elif opt == "--domain":
+            global URL_DOMAIN
             URL_DOMAIN = arg
-            
-    launch_scans(URL_DOMAIN, SCAN_DICT)
-            
+        launch_scans(URL_DOMAIN, SCAN_DICT)
+    else:
+        usage()
+        sys.exit(2)    
         
 if __name__ == "__main__":
     parseArgs(sys.argv[1:])

@@ -3,7 +3,6 @@
 import sys
 import os
 import getopt
-import re
 import DnsScan
 import Shodan
 import URLScan
@@ -71,6 +70,7 @@ def parseArgs():
     if "urlscan" in os.environ:
         SCAN_DICT["URLScan"] = 1
     if "domain" in os.environ:
+        global URL_DOMAIN
         URL_DOMAIN = os.environ['domain']
     else:
         usage()

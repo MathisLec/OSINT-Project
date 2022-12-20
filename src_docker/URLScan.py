@@ -3,7 +3,6 @@ import time
 import os
 import configparser as conf
 import json
-import traceback
 
 URLSCAN_CONF_PATH = os.path.join(os.getcwd(),"resources","URLScan.conf")
 

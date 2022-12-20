@@ -2,13 +2,21 @@
 - Shodan
 - Requests
 - ConfigParser
+- JsonLib
+### Install
+```bash
+pip install -r requirements.txt
+```
 
 ## Functioning
-This tool can be use with the graphic interface, in command line or as an API.
+This tool can be use with a graphic interface, in command line or as an API.
 To use the graphic interface:
 ```
 $ graph.py
 ```
+You can click on the button of the scan that you want to perform, enter the domain to OSINT in the text area, then click on the Start Button.
+Once completed, the results can be consulted in the next view by select the report that you want to see. It takes some time, don't worry.
+
 To use this tool in command line:
 ```
 $ main.py FLAG URL
@@ -19,6 +27,29 @@ Finally, it can be use as API by giving a dictionnary such as
 {"DnsScan": 0, "Shodan":0, "TheHarvester":0, "URLScan":0}
 ```
 and URL to the main(URL, scans) function in main.py, wich 0 say that the scan is disabled, and 1 when it is enabled.
+```
+usage: main.py FLAG DOMAIN
+
+FLAG:
+
+-h, --help
+        show this help
+-d, --dnsscan
+        activ the dnsscan
+-s, --shodan
+        activ the shodan scan
+-t, --theharvester
+        activ the thehavester scan
+-u, --urlscan
+        activ the urlscan
+DOMAIN:
+
+--domain URL
+        the url domain to attack
+```
+
+Because we use API in out application, we store API Keys in conf files on the resources directory, which are imported in the different scans.
+You can use the function scanL(domain) in DnsScan.py script to limit the query API usage. It parse local json file instead of HTTP response from the API.
 
 ## DNSSCAN
 We are using the API service dns-lookup from whoisxmlapi.com
