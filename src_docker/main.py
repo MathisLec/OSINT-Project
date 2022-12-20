@@ -40,7 +40,7 @@ def launch_scans(URL, scans):
             
         # DNSSCAN
         if(scans["DnsScan"]):
-            res = DnsScan.scanL(URL)
+            res = DnsScan.scan(URL)
             write(os.path.join(SCAN_PATH, "dnsscan.log"), res)
         # Shodan
         if(scans["Shodan"]):
@@ -48,7 +48,7 @@ def launch_scans(URL, scans):
             write(os.path.join(SCAN_PATH, "shodan.log"), res)
         # TheHarvester
         if(scans["TheHarvester"]):
-            res = 0
+            res = "Not implemented yet."
             write(os.path.join(SCAN_PATH, "theharvester.log"), res)
         # URLScan
         if(scans["URLScan"]):
