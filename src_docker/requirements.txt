@@ -1,0 +1,4 @@
+shodan==1.28.0
+requests==2.25.1
+theHarvester==0.0.1
+flask==2.2.2
