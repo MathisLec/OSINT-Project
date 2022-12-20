@@ -6,6 +6,8 @@ import getopt
 import re
 import DnsScan
 import Shodan
+import URLScan
+
 
 SCAN_DICT = {"DnsScan": 0, "Shodan":0, "TheHarvester":0, "URLScan":0}
 URL_DOMAIN = ""
@@ -49,7 +51,7 @@ def launch_scans(URL, scans):
             write(os.path.join(SCAN_PATH, "theharvester.log"), res)
         # URLScan
         if(scans["URLScan"]):
-            res = 0
+            res = URLScan.scan(URL)
             write(os.path.join(SCAN_PATH, "urlscan.log"), res)
     else:
         usage()
