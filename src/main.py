@@ -39,7 +39,7 @@ def launch_scans(URL, scans):
             os.makedirs(SCAN_PATH)
         # DNSSCAN
         if(scans["DnsScan"]):
-            res = DnsScan.scanL(URL)
+            res = DnsScan.scan(URL)
             write(os.path.join(SCAN_PATH, "dnsscan.log"), res)
         # Shodan
         if(scans["Shodan"]):

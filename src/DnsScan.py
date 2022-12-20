@@ -27,7 +27,6 @@ def scan(domain):
     for l in dns:
         finalStr += l["rawText"] + '\n'
     finalStr += "Nombre de services trouvés: "+str(len(dns))
-    print(finalStr)
     return finalStr
 
 def scanL(domain):
@@ -38,5 +37,4 @@ def scanL(domain):
         for l in dns:
             finalStr += l["rawText"] + '\n'
         finalStr += "Nombre de services trouvés: "+str(len(dns))
-    print(finalStr)
     return finalStr
