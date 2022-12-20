@@ -47,7 +47,7 @@ def launch_scans(URL, scans):
             write(os.path.join(SCAN_PATH, "shodan.log"), res)
         # TheHarvester
         if(scans["TheHarvester"]):
-            res = 0
+            res = "Not Implemented yet"
             write(os.path.join(SCAN_PATH, "theharvester.log"), res)
         # URLScan
         if(scans["URLScan"]):
