@@ -1,3 +1,0 @@
-tkinter v 0.1.0
-shodan v 1.28.0
-requests v 2.25.1
