@@ -123,11 +123,12 @@ def initLogMenu():
         URLScan_button.pack(side="left")
 
 def startButtonFunction(app_frame):
-    cleanCanva(app_frame)
-    main.launch_scans(TEXT_ENTRY.get(),is_On)
-    global SCAN_PATH
-    SCAN_PATH = os.path.join(os.getcwd(),"scan_"+TEXT_ENTRY.get())
-    initLogMenu()
+    if is_On["DnsScan"] or is_On["Shodan"] or is_On["TheHarvester"] or is_On["URLScan"]:
+        cleanCanva(app_frame)
+        main.launch_scans(TEXT_ENTRY.get(),is_On)
+        global SCAN_PATH
+        SCAN_PATH = os.path.join(os.getcwd(),"scan_"+TEXT_ENTRY.get())
+        initLogMenu()
 
 
 # app frame
